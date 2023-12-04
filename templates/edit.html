@@ -1,0 +1,44 @@
+{% extends 'layout.html'%}
+
+{% block body %}
+
+<h2>Formulario para modificar personaje</h2>
+
+
+<form  action="/actualizar/{{personajes.0}}" method="post">
+    <div class="mb-3">
+      <label for="nombre" class="form-label">Introduce el nombre</label>
+      <input type="text" value="{{personajes.1}}" class="form-control" name="nombre" id="nombre" placeholder="Introduce un nombre">
+    </div>
+    <div class="mb-3">
+      <label for="alterego" class="form-label">Introduce el alterego</label>
+      <input type="text" value="{{personajes.2}}" class="form-control"  name="alterego" id="alterego" placeholder="Introduce el alterego">
+    </div>
+    <div class="mb-3">
+        <label for="tipo" class="form-label">Introduce el tipo de personaje</label>
+        <select name="tipo" id="tipo" class="form-select">
+            <option value="Héroe" {% if personajes.3 == 'Héroe' %}selected{% endif %}>Héroe</option>
+            <option value="Villano" {% if personajes.3 == 'Villano' %}selected{% endif %}>Villano</option>
+            <option value="Anti-Héroe" {% if personajes.3 == 'Anti-Héroe' %}selected{% endif %}>Anti-Héroe</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="poder" class="form-label">Introduce el nivel de poder</label>
+        <input type="number" value="{{personajes.4}}" class="form-control" name="poder" id="poder">
+    </div>
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+<!-- <form action="/actualizar/{{personajes.0}}" method="post">
+    Introduce el nombre<input type="text" value="{{personajes.1}}" name="nombre" id="nombre" placeholder="Introduce un nombre">
+    Introduce el alterego<input type="text" value="{{personajes.2}}" name="alterego" id="nombre" placeholder="Introduce el alterego">
+    ¿Qué tipo de personaje es?
+    <select name="tipo" id="tipo">
+        <option value="heroe" {% if personajes.3 == 'heroe' %}selected{% endif %}>Héroe</option>
+        <option value="villano" {% if personajes.3 == 'villano' %}selected{% endif %}>Villano</option>
+        <option value="antiheroe" {% if personajes.3 == 'antiheroe' %}selected{% endif %}>Anti-Héroe</option>
+    </select>
+    Introduce el numero de poder<input type="number" value="{{personajes.4}}" name="poder" id="poder">
+    <input type="submit" value="Enviar">
+</form> -->
+
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends 'layout.html'%}
+
+{% block body %}
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for message in messages%}
+    <div class="alert alert-success" role="alert">
+        {{message}}
+    </div>
+{% endfor%}
+{% endif %}
+{% endwith %}
+<h2>Formulario para insertar personaje</h2>
+
+<form action="/agregar" method="post" class="mb-3">
+    <div class="mb-3">
+      <label for="nombre" class="form-label">Introduce el nombre</label>
+      <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Introduce un nombre">
+    </div>
+    <div class="mb-3">
+      <label for="alterego" class="form-label">Introduce el alterego</label>
+      <input type="text" class="form-control" name="alterego" id="alterego" placeholder="Introduce el alterego">
+    </div>
+    <div class="mb-3">
+        <label for="tipo" class="form-label">Introduce el tipo de personaje</label>
+        <select name="tipo" id="tipo" class="form-select">
+            <option value="Héroe">Héroe</option>
+            <option value="Villano">Villano</option>
+            <option value="Anti-Héroes">Anti-Héroe</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="poder" class="form-label">Introduce el nivel de poder</label>
+        <input type="number" class="form-control" name="poder" id="poder">
+    </div>
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+
+<table class="table table-hover">
+    <thead>
+        <tr class="text-center">
+            <td scope="col">Nombre</td>
+            <td scope="col">Alter Ego</td>
+            <td scope="col">Tipo de personaje</td>
+            <td scope="col">Nivel de poder</td>
+            <td scope="col">Editar</td>
+            <td scope="col">Eliminar</td>
+        </tr>
+    </thead>
+        {% for personaje in personajes%}
+           <tr class="text-center">
+            <td scope="row">{{personaje.1}}</td>
+            <td scope="row">{{personaje.2}}</td>
+            <td scope="row">{{personaje.3}}</td>
+            <td scope="row">{{personaje.4}}</td>
+            <td scope="row"><a href="/editar/{{personaje.0}}" class="btn btn-primary">Editar</a>
+            <td scope="row"><a href="/eliminar/{{personaje.0}}" class="btn btn-danger">Eliminar</a></td></td>
+           </tr> 
+        {%endfor%}
+    </tbody>
+</table>
+
+{% endblock %}
